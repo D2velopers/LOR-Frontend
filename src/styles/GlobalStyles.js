@@ -10,6 +10,11 @@ export default createGlobalStyle`
   body {
     background-color: ${props => props.theme.colors.light.bg};
     font-size: 14px;
+    line-height: 1;
+    font-variant-ligatures: none;
+    text-rendering: optimizeLegibility;
+    text-shadow: rgba(0, 0, 0, .1) 0 0 1px;
+    font-weight: 400;
     font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   }
   a {

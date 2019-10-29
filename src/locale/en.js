@@ -1,4 +1,16 @@
 export default {
   'nav.decks': 'Deck Library',
   'nav.cards': 'Card Gallery',
+  'option.region': 'Region',
+  'option.champion': 'Champion',
+  'option.type': 'Deck Type',
+  'option.rest': 'Additional',
+  'sort.popular': 'Popular',
+  'sort.recent': 'Recent',
+  'region.DM': 'Demasia',
+  'region.FR': 'Freljord',
+  'region.IO': 'Ionia',
+  'region.NX': 'Noxus',
+  'region.PZ': 'Piltover & Zaun',
+  'region.SI': 'Shadow Isles',
 };

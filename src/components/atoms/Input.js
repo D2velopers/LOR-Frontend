@@ -11,7 +11,7 @@ const Input = styled.input`
 const Flexible = styled(Input)`
   width: ${props => props.from}px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: ${props => props.theme.colors.dark.lighten};
   transition: width 0.2s;
   color: ${props => props.theme.colors.dark.title};
   &:focus {

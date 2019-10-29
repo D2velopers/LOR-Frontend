@@ -4,7 +4,6 @@ import Routes from './routes';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/GlobalStyles';
 import Theme from './styles/Theme';
-import { Header } from './components';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <>
         <GlobalStyles />
         <Router>
-          <Header />
           <Routes />
         </Router>
       </>

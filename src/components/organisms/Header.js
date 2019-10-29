@@ -2,17 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { FlexibleInput } from './Input';
-import useInput from '../lib/useInput';
+import { FlexibleInput } from '../atoms/Input';
 
 const Centered = styled.div`
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
+  font-size: 1.1rem;
 `;
 const Wrapper = styled.header`
   width: 100%;
   max-width: ${props => props.theme.sizes.contentsMaxWidth};
   margin: 0 auto;
+  padding: 0 ${props => props.theme.sizes.space};
   display: flex;
   justify-content: space-between;
 `;
@@ -20,10 +21,8 @@ const Item = styled.div`
   display: flex;
   height: ${props => props.theme.sizes.headerHeight};
   align-items: center;
-  > * {
-    &:not(:last-child) {
-      margin-right: ${props => props.theme.sizes.space};
-    }
+  > *:not(:last-child) {
+    margin-right: ${props => props.theme.sizes.space};
   }
 `;
 const Main = styled(Item)``;
@@ -39,9 +38,9 @@ const Link = styled(NavLink)`
   }
 `;
 
-export default function Header() {
+export default function Header({ search }) {
   const { formatMessage: f } = useIntl();
-  const search = useInput('');
+
   return (
     <Centered>
       <Wrapper>
@@ -50,7 +49,7 @@ export default function Header() {
             Header
           </Link>
           <form>
-            <FlexibleInput from={225} to={470} search={search} />
+            <FlexibleInput from={170} to={370} search={search} />
           </form>
           <Link to={`/decks`}>{f({ id: 'nav.decks' })}</Link>
           <Link to={`/cards`}>{f({ id: 'nav.cards' })}</Link>
