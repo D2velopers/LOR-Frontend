@@ -68,6 +68,7 @@ export default function List() {
   const [champions, setChampions] = useState([]);
   const [deckType, setDeckType] = useState([]);
   const [regions, setRegions] = useState([]);
+  const [costs, setCosts] = useState([]);
   function handleChampions(champions) {
     if (champions && champions.length > 2) {
       return;
@@ -77,14 +78,20 @@ export default function List() {
   }
   function handleRegions(region) {
     const deduplication = regions.filter(el => el !== region);
-    console.log(region, deduplication, region);
     if (regions.length !== deduplication.length) {
       setRegions(deduplication);
     } else {
       const next = deduplication.concat(region);
-      if (next.length < 3) {
-        setRegions(next);
-      }
+      setRegions(next);
+    }
+  }
+  function handleCosts(cost) {
+    const deduplication = costs.filter(el => el !== cost);
+    if (costs.length !== deduplication.length) {
+      setCosts(deduplication);
+    } else {
+      const next = deduplication.concat(cost);
+      setCosts(next);
     }
   }
   function FilterSet() {
@@ -95,7 +102,7 @@ export default function List() {
           value={regions}
           onChange={handleRegions}
         />
-        <CostFilter costs={COSTS} value={regions} onChange={handleRegions} />
+        <CostFilter costs={COSTS} value={costs} onChange={handleCosts} />
         <Device>
           <CardTypeFilter
             options={groupedOptions}

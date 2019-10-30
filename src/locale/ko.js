@@ -1,4 +1,5 @@
 export default {
+  'app.title': 'LOR',
   'nav.decks': '덱 리스트',
   'nav.cards': '카드 리스트',
   'nav.signin': '로그인',

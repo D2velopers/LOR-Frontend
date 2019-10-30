@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { FlexibleInput } from '../atoms/Input';
+import Button, { BorderButton } from '../atoms/Button';
+import Avatar from '../molecules/Avatar';
 
 const Centered = styled.div`
+  visibility: ${props => (props.isHidden ? 'hidden' : 'none')};
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   font-size: 1.1rem;
@@ -40,15 +43,15 @@ const Link = styled(NavLink)`
   }
 `;
 
-export default function Header({ search }) {
+export default function Header({ search, isSignIn, isHidden, onLogout }) {
   const { formatMessage: f } = useIntl();
 
   return (
-    <Centered>
+    <Centered isHidden={isHidden}>
       <Wrapper>
         <Main>
           <Link exact to={`/`}>
-            Header
+            {f({ id: 'app.title' })}
           </Link>
           <form>
             <FlexibleInput from={170} to={370} search={search} />
@@ -57,7 +60,23 @@ export default function Header({ search }) {
           <Link to={`/cards`}>{f({ id: 'nav.cards' })}</Link>
         </Main>
         <Sub>
-          <Link to={`/user/${'test'}`}>user</Link>
+          <Link to={`/decks/build`}>
+            <BorderButton>덱 시뮬레이터</BorderButton>
+          </Link>
+          {isSignIn ? (
+            <>
+              <div onClick={onLogout} style={{ color: 'white' }}>
+                test
+              </div>
+              <Link to={`/user/${'test'}`}>
+                <Avatar />
+              </Link>
+            </>
+          ) : (
+            <Link to="/auth/signin">
+              <Button>로그인</Button>
+            </Link>
+          )}
         </Sub>
       </Wrapper>
     </Centered>

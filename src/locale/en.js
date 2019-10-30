@@ -1,4 +1,5 @@
 export default {
+  'app.title': 'LOR',
   'nav.decks': 'Deck Library',
   'nav.cards': 'Card Gallery',
   'nav.signin': 'Sign In',

@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import { AddOrCancel } from '../../icons/generals';
 
 const Centered = styled.div`
-  position: sticky;
+  position: relative;
   z-index: 100;
-  top: 0;
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   &:after {
@@ -49,7 +48,7 @@ const Fieldset = styled.fieldset`
     max-width: ${props => props.theme.sizes.middle};
     width: 100%;
     margin: 0 auto;
-    transition: opacity 0.5s, max-height 0.3s;
+    transition: opacity 0.5s, max-height 0.5s;
     > *:not(:last-child) {
       margin-bottom: ${props => props.theme.sizes.space};
     }
