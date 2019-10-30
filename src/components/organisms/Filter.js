@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { AddOrCancel } from '../../icons/generals';
 
 const Centered = styled.div`
-  position: relative;
+  position: sticky;
+  z-index: 100;
+  top: 0;
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   &:after {
@@ -37,14 +39,17 @@ const Fieldset = styled.fieldset`
     props.activated ? `2px solid ${props.theme.colors.dark.emph}` : 'none'};
   border-radius: ${props => props.theme.styles.borderRadius};
   padding: ${props => (props.activated ? '1rem' : '0 1rem')};
-  transition: all 0.8s;
   > div {
+    position: relative;
+    z-index: 100;
+    overflow: ${props => (props.activated ? 'visible' : 'hidden')};
     opacity: ${props => (props.activated ? 1 : 0)};
     max-height: ${props => (props.activated ? '100vh' : 0)};
+    height: auto;
     max-width: ${props => props.theme.sizes.middle};
     width: 100%;
     margin: 0 auto;
-    transition: all 0.8s;
+    transition: opacity 0.5s, max-height 0.3s;
     > *:not(:last-child) {
       margin-bottom: ${props => props.theme.sizes.space};
     }

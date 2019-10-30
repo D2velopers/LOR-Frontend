@@ -55,6 +55,7 @@ const LabelWrapper = styled.div`
   }
 `;
 const LabelText = styled.label`
+  cursor: pointer;
   font-size: 1rem;
   color: ${props => props.theme.colors.dark.title};
   opacity: ${props => (!props.isOn ? 1 : 0.5)};

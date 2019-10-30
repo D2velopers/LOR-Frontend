@@ -61,27 +61,44 @@ const deckTypeOptions = [
   { value: 'silver', label: 'Silver', color: '#666666' },
 ];
 const CardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 export default function List() {
-  const [selected, setSelected] = useState([]);
-  function handleChange(selected) {
-    if (selected && selected.length > 2) {
+  const [champions, setChampions] = useState([]);
+  const [deckType, setDeckType] = useState([]);
+  const [regions, setRegions] = useState([]);
+  function handleChampions(champions) {
+    if (champions && champions.length > 2) {
       return;
     } else {
-      setSelected(selected);
+      setChampions(champions);
     }
   }
-  const [deckType, setDeckType] = useState([]);
-
+  function handleRegions(region) {
+    const deduplication = regions.filter(el => el !== region);
+    console.log(region, deduplication, region);
+    if (regions.length !== deduplication.length) {
+      setRegions(deduplication);
+    } else {
+      const next = deduplication.concat(region);
+      if (next.length < 3) {
+        setRegions(next);
+      }
+    }
+  }
   function FilterSet() {
     return (
       <>
-        <RegionFilter regions={REGIONS} />
+        <RegionFilter
+          regions={REGIONS}
+          value={regions}
+          onChange={handleRegions}
+        />
         <Device>
           <ChampionFilter
             options={groupedOptions}
             isMulti={true}
-            value={selected}
-            onChange={handleChange}
+            value={champions}
+            onChange={handleChampions}
           />
           <DeckTypeFilter
             options={deckTypeOptions}

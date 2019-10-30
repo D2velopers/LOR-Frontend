@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   border: ${props => props.theme.styles.boxBorder};
+  border-color: transparent;
   border-radius: ${props => props.theme.styles.borderRadius};
   font-size: 0.8rem;
   padding: 0.5em 0.625em;
@@ -23,8 +24,8 @@ const Flexible = styled(Input)`
   }
 `;
 
-export function DefaultInput() {
-  return <Input />;
+export function DefaultInput({ ...rest }) {
+  return <Input {...rest} />;
 }
 
 export function FlexibleInput({ from, to, ...rest }) {

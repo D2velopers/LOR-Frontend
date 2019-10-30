@@ -8,8 +8,7 @@ import User from './User';
 import NotFound from './NotFound';
 import Header from './Base/Header';
 
-export default function Router({ location }) {
-  console.log(location);
+export default function Router() {
   return (
     <>
       <Route path="/" component={Header} />

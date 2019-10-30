@@ -28,38 +28,33 @@ const formatGroupLabel = data => (
 );
 
 const colourStyles = {
-  control: styles => {
-    return {
-      ...styles,
-      border: 'none',
-      backgroundColor: theme.colors.dark.lighten,
-      boxShadow: 'none',
-    };
-  },
+  control: styles => ({
+    ...styles,
+    border: 'none',
+    backgroundColor: theme.colors.dark.lighten,
+    boxShadow: 'none',
+  }),
+  input: styles => ({ ...styles, color: theme.colors.dark.title }),
   singleValue: styles => ({ ...styles, color: theme.colors.dark.title }),
-  option: (styles, { data, isDisabled, isSelected, isFocused }) => {
-    return {
-      ...styles,
-      backgroundColor: isDisabled
-        ? null
-        : isSelected
-        ? null
-        : isFocused
-        ? theme.colors.dark.caption
-        : null,
-    };
-  },
+  option: (styles, { data, isDisabled, isSelected, isFocused }) => ({
+    ...styles,
+    backgroundColor: isDisabled
+      ? null
+      : isSelected
+      ? null
+      : isFocused
+      ? theme.colors.dark.caption
+      : null,
+  }),
   menu: styles => ({
     ...styles,
     backgroundColor: theme.colors.dark.lighten,
   }),
-  multiValue: (styles, { data }) => {
-    return {
-      ...styles,
-      fontSize: '16px',
-      backgroundColor: theme.colors.dark.bg,
-    };
-  },
+  multiValue: (styles, { data }) => ({
+    ...styles,
+    fontSize: '16px',
+    backgroundColor: theme.colors.dark.bg,
+  }),
   multiValueLabel: (styles, { data }) => ({
     ...styles,
     color: theme.colors.dark.title,

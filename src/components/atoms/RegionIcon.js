@@ -49,11 +49,16 @@ function getIcon(region) {
   }
 }
 
-export default function RegionIcon({ region, size = 4, lite = false }) {
+export default function RegionIcon({
+  region,
+  size = 4,
+  lite = false,
+  ...rest
+}) {
   const { formatMessage: f } = useIntl();
 
   return (
-    <Wrapper size={size}>
+    <Wrapper size={size} {...rest}>
       {getIcon(region)}
       {!lite && <p>{f({ id: `region.${region}` })}</p>}
     </Wrapper>

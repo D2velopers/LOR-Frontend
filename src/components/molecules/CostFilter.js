@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
 import RegionIcon from '../atoms/RegionIcon';
+import Circle from '../atoms/Circle';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,24 +17,23 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function RegionFilter({ regions, value, onChange }) {
+export default function RegionFilter({ costs, value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <Wrapper>
-      <Title>{f({ id: 'option.region' })}</Title>
-      <GridList min={3} max={6}>
-        {regions.map(region => (
-          <RegionIcon
-            region={region}
-            size={3}
-            key={region}
-            onClick={() => onChange(region)}
+      <Title>{f({ id: 'option.cost' })}</Title>
+      <GridList min={4} max={8} size={'3em'}>
+        {costs.map(cost => (
+          <Circle
+            key={`mana_cost_${cost}`}
+            onClick={() => onChange(cost)}
             style={{
               cursor: 'pointer',
-              opacity: value.some(item => item === region) ? 1 : 0.3,
-            }}
-          />
+              opacity: value.some(item => item === cost) ? 1 : 0.3,
+            }}>
+            {cost}
+          </Circle>
         ))}
       </GridList>
     </Wrapper>

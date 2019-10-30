@@ -11,12 +11,15 @@ const List = styled.div`
 const Grid = styled(List)`
   display: grid;
   width: 100%;
+  justify-content: space-around;
   @media (max-width: ${props => props.theme.sizes.middle}) {
-    grid-template-columns: repeat(${props => props.min}, 1fr);
+    grid-template-columns: repeat(
+      ${props => props.min},
+      ${props => props.size}
+    );
   }
-  grid-template-columns: repeat(${props => props.max}, 1fr);
-  grid-column-gap: ${props => props.theme.sizes.space};
-  grid-row-gap: ${props => props.theme.sizes.space};
+  grid-template-columns: repeat(${props => props.max}, ${props => props.size});
+  gap: ${props => props.theme.sizes.space};
 `;
 const Flex = styled(List)`
   display: flex;
@@ -27,9 +30,9 @@ const Flex = styled(List)`
   }
 `;
 
-export function GridList({ children, min, max }) {
+export function GridList({ children, min, max, size = '1fr' }) {
   return (
-    <Grid min={min} max={max}>
+    <Grid min={min} max={max} size={size}>
       {children}
     </Grid>
   );

@@ -1,10 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 const appearing = keyframes`
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(0, -20px, 0);
   }
-  100% {
+  to {
     opacity: 1;
     transform: none;
   }

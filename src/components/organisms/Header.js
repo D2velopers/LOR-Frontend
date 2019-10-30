@@ -8,6 +8,8 @@ const Centered = styled.div`
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   font-size: 1.1rem;
+  position: relative;
+  z-index: 900;
 `;
 const Wrapper = styled.header`
   width: 100%;
