@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
 `;
 const Title = styled.p`
   font-size: 1.1rem;
@@ -16,7 +15,7 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function RegionFilter({ regions }) {
+export default function SortingSwitch({ regions }) {
   const { formatMessage: f } = useIntl();
   const [sortByRecent, setSortByRecent] = useState(false);
   const [viewByList, setViewByList] = useState(false);

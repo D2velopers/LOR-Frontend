@@ -1,5 +1,6 @@
 import React from 'react';
+import GeneralLayout from '../layouts/GeneralLayout';
 
 export default function Main() {
-  return <div>Main</div>;
+  return <GeneralLayout>Main</GeneralLayout>;
 }

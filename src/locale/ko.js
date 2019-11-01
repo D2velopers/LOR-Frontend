@@ -6,6 +6,8 @@ export default {
   'nav.signup': '회원가입',
   'option.region': '지역',
   'option.champion': '챔피언',
+  'option.spell': '주문',
+  'option.follower': '추종자',
   'option.type': '유형',
   'option.rest': '기타',
   'option.cost': '비용',

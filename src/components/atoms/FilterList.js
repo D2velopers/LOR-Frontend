@@ -18,7 +18,10 @@ const Grid = styled(List)`
       ${props => props.size}
     );
   }
-  grid-template-columns: repeat(${props => props.max}, ${props => props.size});
+  grid-template-columns: repeat(
+    ${props => props.max || 'auto-fit'},
+    ${props => props.size || '1fr'}
+  );
   gap: ${props => props.theme.sizes.space};
 `;
 const Flex = styled(List)`

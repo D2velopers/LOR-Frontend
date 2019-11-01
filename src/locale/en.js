@@ -6,6 +6,8 @@ export default {
   'nav.signup': 'Sign Up',
   'option.region': 'Region',
   'option.champion': 'Champion',
+  'option.spell': 'Spell',
+  'option.follower': 'Follower',
   'option.type': 'Deck Type',
   'option.rest': 'Additional',
   'option.cost': 'Cost',

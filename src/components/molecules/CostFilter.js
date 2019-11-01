@@ -2,14 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
-import RegionIcon from '../atoms/RegionIcon';
 import Circle from '../atoms/Circle';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
 `;
 const Title = styled.p`
   font-size: 1.1rem;
@@ -17,7 +15,7 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function RegionFilter({ costs, value, onChange }) {
+export default function CostFilter({ costs, value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (

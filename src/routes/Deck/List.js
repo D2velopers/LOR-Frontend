@@ -8,13 +8,13 @@ import ChampionFilter from '../../components/molecules/ChampionFilter';
 import DeckTypeFilter from '../../components/molecules/DeckTypeFilter';
 
 const Device = styled.div`
-  display: flex;
-  flex-direction: row;
-  > *:not(:last-child) {
-    margin-right: ${props => props.theme.sizes.space};
-  }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-row: none;
+  gap: ${props => props.theme.sizes.space};
   @media (max-width: ${props => props.theme.sizes.middle}) {
-    flex-direction: column;
+    grid-template-row: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -96,7 +96,7 @@ export default function List() {
         <Device>
           <ChampionFilter
             options={groupedOptions}
-            isMulti={true}
+            isMulti
             value={champions}
             onChange={handleChampions}
           />

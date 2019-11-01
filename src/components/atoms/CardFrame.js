@@ -12,8 +12,10 @@ const appearing = keyframes`
 
 const Frame = styled.div`
   opacity: 0;
-  max-width: ${props => props.theme.sizes.card.width};
-  height: ${props => props.theme.sizes.card.height};
+  max-width: ${props =>
+    props.sm ? props.theme.sizes.card.sWidth : props.theme.sizes.card.width};
+  height: ${props =>
+    props.sm ? props.theme.sizes.card.sHeight : props.theme.sizes.card.height};
   border-radius: ${props => props.theme.sizes.card.borderRadius};
   background-color: grey;
   width: 100%;

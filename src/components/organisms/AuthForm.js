@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useIntl } from 'react-intl';
+// import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import CardFrame from '../atoms/CardFrame';
 import { DefaultInput } from '../atoms/Input';
 import Button from '../atoms/Button';
 
@@ -33,7 +32,7 @@ export function SigninForm({ email, password }) {
   );
 }
 
-export function SignUpForm({}) {
+export function SignUpForm() {
   return (
     <>
       <DefaultInput type="email" placeholder="이메일" required />

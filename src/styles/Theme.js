@@ -24,6 +24,8 @@ const Theme = {
     card: {
       width: '240px',
       height: '320px',
+      sWidth: '100%',
+      sHeight: '3rem',
       borderRadius: '1rem',
     },
   },

@@ -5,7 +5,6 @@ import Selector from '../atoms/Selector';
 
 const Wrapper = styled.div`
   width: 100%;
-  margin: 0 auto;
 `;
 const Title = styled.p`
   text-align: center;
@@ -14,7 +13,7 @@ const Title = styled.p`
   margin: 0.5rem;
 `;
 
-export default function ChampionFilter({ options, isMulti, value, onChange }) {
+export default function DeckTypeFilter({ options, isMulti, value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (

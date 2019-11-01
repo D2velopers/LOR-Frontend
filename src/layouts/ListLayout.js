@@ -20,7 +20,7 @@ export default function ListLayout({ FilterSet, children }) {
       <Filter>
         <FilterSet />
       </Filter>
-      <GeneralLayout>
+      <GeneralLayout noFooter>
         <List>{children}</List>
       </GeneralLayout>
     </>

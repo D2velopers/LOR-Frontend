@@ -10,6 +10,7 @@ const Centered = styled.div`
   &:after {
     content: '';
     position: absolute;
+    z-index: 10;
     top: 100%;
     left: calc(50% - 20px);
     background-color: ${props => props.theme.colors.dark.bg};
@@ -25,6 +26,12 @@ const Wrapper = styled.div`
   padding: 1rem;
 `;
 const Fieldset = styled.fieldset`
+  position: relative;
+  z-index: 100;
+  border: ${props =>
+    props.activated ? `2px solid ${props.theme.colors.dark.emph}` : 'none'};
+  border-radius: ${props => props.theme.styles.borderRadius};
+  padding: ${props => (props.activated ? '1rem' : '0 1rem')};
   legend {
     display: flex;
     align-items: center;
@@ -34,21 +41,14 @@ const Fieldset = styled.fieldset`
     padding-right: 0.5rem;
     cursor: pointer;
   }
-  border: ${props =>
-    props.activated ? `2px solid ${props.theme.colors.dark.emph}` : 'none'};
-  border-radius: ${props => props.theme.styles.borderRadius};
-  padding: ${props => (props.activated ? '1rem' : '0 1rem')};
   > div {
-    position: relative;
-    z-index: 100;
-    overflow: ${props => (props.activated ? 'visible' : 'hidden')};
     opacity: ${props => (props.activated ? 1 : 0)};
-    max-height: ${props => (props.activated ? '100vh' : 0)};
-    height: auto;
+    max-height: ${props => (props.activated ? '1000px' : 0)};
+    transform-origin: top;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1),
+      opacity 0.5s cubic-bezier(0, 1, 0, 1);
     max-width: ${props => props.theme.sizes.middle};
-    width: 100%;
     margin: 0 auto;
-    transition: opacity 0.5s, max-height 0.5s;
     > *:not(:last-child) {
       margin-bottom: ${props => props.theme.sizes.space};
     }

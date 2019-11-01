@@ -7,7 +7,7 @@ import Button, { BorderButton } from '../atoms/Button';
 import Avatar from '../molecules/Avatar';
 
 const Centered = styled.div`
-  visibility: ${props => (props.isHidden ? 'hidden' : 'none')};
+  visibility: ${props => (props.isHidden ? 'hidden' : 'visible')};
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   font-size: 1.1rem;
