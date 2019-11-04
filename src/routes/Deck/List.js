@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Layout from '../../layouts/ListLayout';
 import CardFrame from '../../components/atoms/CardFrame';
 import SortingSwitch from '../../components/molecules/SortingSwitch';
@@ -114,7 +115,9 @@ export default function List() {
   return (
     <Layout FilterSet={FilterSet}>
       {CardList.map((item, index) => (
-        <CardFrame key={index} index={index} />
+        <Link key={index} to={`decks/${index}`}>
+          <CardFrame index={index} />
+        </Link>
       ))}
     </Layout>
   );

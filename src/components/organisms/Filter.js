@@ -45,7 +45,7 @@ const Fieldset = styled.fieldset`
     opacity: ${props => (props.activated ? 1 : 0)};
     max-height: ${props => (props.activated ? '1000px' : 0)};
     transform-origin: top;
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1),
+    transition: max-height 0.8s cubic-bezier(0, 1, 0, 1),
       opacity 0.5s cubic-bezier(0, 1, 0, 1);
     max-width: ${props => props.theme.sizes.middle};
     margin: 0 auto;
