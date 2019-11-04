@@ -28,14 +28,6 @@ const Title = styled.div`
   text-align: center;
 `;
 const Form = styled.form`
-  input {
-    font-size: 1.1em;
-    color: ${props => props.theme.colors.dark.title};
-    background-color: ${props => props.theme.colors.dark.lighten};
-    ::placeholder {
-      color: ${props => props.theme.colors.dark.emph};
-    }
-  }
   > *:not(:last-child) {
     margin-bottom: ${props => props.theme.sizes.space};
   }

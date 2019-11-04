@@ -7,6 +7,7 @@ import { SigninForm } from '../../components/organisms/AuthForm';
 export default function SignIn() {
   const email = useInput('');
   const password = useInput('');
+
   function handleLogin(e) {
     e.preventDefault();
 

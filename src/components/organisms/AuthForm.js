@@ -32,13 +32,23 @@ export function SigninForm({ email, password }) {
   );
 }
 
-export function SignUpForm() {
+export function SignUpForm({ email, username, password, passwordConfirm }) {
   return (
     <>
-      <DefaultInput type="email" placeholder="이메일" required />
-      <DefaultInput placeholder="사용자 이름" required />
-      <DefaultInput type="password" placeholder="비밀번호" required />
-      <DefaultInput type="password" placeholder="비밀번호 확인" required />
+      <DefaultInput type="email" placeholder="이메일" required {...email} />
+      <DefaultInput placeholder="사용자 이름" required {...username} />
+      <DefaultInput
+        type="password"
+        placeholder="비밀번호"
+        required
+        {...password}
+      />
+      <DefaultInput
+        type="password"
+        placeholder="비밀번호 확인"
+        required
+        {...passwordConfirm}
+      />
       <Submit>회원가입</Submit>
       <StateChanger to="/auth/signin">이미 계정이 있으신가요?</StateChanger>
     </>
