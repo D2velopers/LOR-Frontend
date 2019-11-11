@@ -16,7 +16,8 @@ const Theme = {
   },
   sizes: {
     contentsMaxWidth: '1300px',
-    headerHeight: '60px',
+    headerHeight: '3.75rem',
+    inputHeight: '2.25rem',
     space: '1rem',
     small: '375px',
     middle: '768px',
@@ -30,6 +31,7 @@ const Theme = {
     },
   },
   styles: {
+    boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
     boxBorder: '1px solid #e6e6e6',
     borderRadius: '4px',
   },

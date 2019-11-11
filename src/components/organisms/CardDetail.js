@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import CardFrame from '../atoms/CardFrame';
+import Card from '../molecules/Card';
 
 const Title = styled.div`
   font-size: 1.5rem;
 `;
 const ToBack = styled(Link)`
-  color: ${props => props.theme.colors.dark.emph};
+  color: ${props => props.theme.colors.dark.caption};
   font-weight: 600;
 `;
 const Wrapper = styled.div`
@@ -24,31 +24,32 @@ const Detail = styled.div`
   }
 `;
 const Feature = styled.div``;
-const Description = styled.div``;
+const Description = styled.div`
+  line-height: 1.2rem;
+`;
 const Bio = styled.p`
   font-style: italic;
 `;
 
-export default function CardDetail() {
+export default function CardDetail({ value }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <>
-      <ToBack to="/cards">{f({ id: 'nav.cards' })}</ToBack>
-      <Title>Card 0 1</Title>
+      <ToBack to="/cards">{f({ id: 'page.cards' })}</ToBack>
+      <Title>{value.name}</Title>
       <Wrapper>
-        <CardFrame />
+        <Card image={value} />
         <Detail>
-          <Feature>Shadow Isles Spell Rare</Feature>
-          <Description>
-            BurstBurst spells resolve instantly. The enemy can't act before it
-            finishes. Pick a follower. Create an Ephemeral copy of it in hand.
-          </Description>
-          <Bio>
-            For a moment, she remembered. Dappled sunlight dancing across her
-            skin, plump dewberries bursting between her teeth, and the glade’s
-            fragile melody drifting over her on the breeze. Then... it was gone.
-          </Bio>
+          <Feature>
+            <span>{value.region}</span>
+            <span>{value.supertype ? value.supertype : value.type}</span>
+            {value.rarityRef !== 'None' && <span>{value.rarity}</span>}
+          </Feature>
+          <Description
+            dangerouslySetInnerHTML={{ __html: value.description }}
+          />
+          <Bio>{value.flavorText}</Bio>
         </Detail>
       </Wrapper>
     </>

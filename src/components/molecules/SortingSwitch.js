@@ -15,16 +15,14 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function SortingSwitch({ regions }) {
+export default function SortingSwitch({
+  sortByRecent,
+  viewByList,
+  handleSort,
+  handleView,
+}) {
   const { formatMessage: f } = useIntl();
-  const [sortByRecent, setSortByRecent] = useState(false);
-  const [viewByList, setViewByList] = useState(false);
-  function handleSort() {
-    setSortByRecent(!sortByRecent);
-  }
-  function handleView() {
-    setViewByList(!viewByList);
-  }
+
   return (
     <Wrapper>
       <Title>{f({ id: 'option.rest' })}</Title>

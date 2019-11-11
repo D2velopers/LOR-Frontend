@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { DefaultInput } from '../atoms/Input';
 import Button from '../atoms/Button';
@@ -17,40 +17,74 @@ const StateChanger = styled(Link)`
 `;
 
 export function SigninForm({ email, password }) {
+  const { formatMessage: f } = useIntl();
+
   return (
     <>
-      <DefaultInput type="email" placeholder="이메일" required {...email} />
+      <DefaultInput
+        type="email"
+        placeholderLocaleId="auth.email"
+        required
+        {...email}
+      />
       <DefaultInput
         type="password"
-        placeholder="비밀번호"
+        placeholderLocaleId="auth.pw"
         required
         {...password}
       />
-      <Submit>로그인</Submit>
+      <Submit>{f({ id: 'nav.signin' })}</Submit>
       <StateChanger to="/auth/signup">아직 계정이 없으신가요?</StateChanger>
     </>
   );
 }
 
 export function SignUpForm({ email, username, password, passwordConfirm }) {
+  const { formatMessage: f } = useIntl();
+
   return (
     <>
-      <DefaultInput type="email" placeholder="이메일" required {...email} />
-      <DefaultInput placeholder="사용자 이름" required {...username} />
+      <DefaultInput
+        type="email"
+        placeholderLocaleId="auth.email"
+        required
+        {...email}
+      />
+      <DefaultInput
+        placeholderLocaleId="auth.username"
+        required
+        {...username}
+      />
       <DefaultInput
         type="password"
-        placeholder="비밀번호"
+        placeholderLocaleId="auth.pw"
         required
         {...password}
       />
       <DefaultInput
         type="password"
-        placeholder="비밀번호 확인"
+        placeholderLocaleId="auth.pwConfirm"
         required
         {...passwordConfirm}
       />
-      <Submit>회원가입</Submit>
+      <Submit>{f({ id: 'nav.signup' })}</Submit>
       <StateChanger to="/auth/signin">이미 계정이 있으신가요?</StateChanger>
+    </>
+  );
+}
+
+export function ConfirmForm({ vefiryCode, password }) {
+  const { formatMessage: f } = useIntl();
+
+  return (
+    <>
+      <DefaultInput
+        type="text"
+        placeholderLocaleId="auth.emailVerify"
+        required
+        {...vefiryCode}
+      />
+      <Submit>{f({ id: 'nav.confirm' })}</Submit>
     </>
   );
 }

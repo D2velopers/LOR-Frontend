@@ -11,8 +11,10 @@ const Centered = styled.div`
   width: 100%;
   background-color: ${props => props.theme.colors.dark.bg};
   font-size: 1.1rem;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 900;
+  box-shadow: ${props => props.theme.styles.boxShadow};
 `;
 const Wrapper = styled.header`
   width: 100%;
@@ -56,12 +58,12 @@ export default function Header({ search, isSignIn, isHidden, onLogout }) {
           <form>
             <FlexibleInput from={170} to={370} search={search} />
           </form>
-          <Link to={`/decks`}>{f({ id: 'nav.decks' })}</Link>
-          <Link to={`/cards`}>{f({ id: 'nav.cards' })}</Link>
+          <Link to={`/decks`}>{f({ id: 'page.decks' })}</Link>
+          <Link to={`/cards`}>{f({ id: 'page.cards' })}</Link>
         </Main>
         <Sub>
           <Link to={`/decks/build`}>
-            <BorderButton>덱 시뮬레이터</BorderButton>
+            <BorderButton>{f({ id: 'page.build' })}</BorderButton>
           </Link>
           {isSignIn ? (
             <>

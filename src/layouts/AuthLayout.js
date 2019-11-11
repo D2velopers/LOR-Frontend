@@ -31,6 +31,9 @@ const Form = styled.form`
   > *:not(:last-child) {
     margin-bottom: ${props => props.theme.sizes.space};
   }
+  > button {
+    margin-top: ${props => props.theme.sizes.space};
+  }
 `;
 
 export default function AuthLayout({ onSubmit, children }) {

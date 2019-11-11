@@ -32,17 +32,17 @@ const Wrapper = styled.div`
 
 function getIcon(region) {
   switch (region) {
-    case 'DM':
+    case 'Demacia':
       return <Demasia />;
-    case 'FR':
+    case 'Freljord':
       return <Freljord />;
-    case 'IO':
+    case 'Ionia':
       return <Ionia />;
-    case 'NX':
+    case 'Noxus':
       return <Noxus />;
-    case 'PZ':
+    case 'PiltoverZaun':
       return <PiltoverZaun />;
-    case 'SI':
+    case 'ShadowIsles':
       return <ShadowIsles />;
     default:
       return <div>Unknown</div>;

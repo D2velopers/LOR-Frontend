@@ -21,7 +21,7 @@ export default function CostFilter({ costs, value, onChange }) {
   return (
     <Wrapper>
       <Title>{f({ id: 'option.cost' })}</Title>
-      <GridList min={4} max={8} size={'3em'}>
+      <GridList min={4} max={8}>
         {costs.map(cost => (
           <Circle
             key={`mana_cost_${cost}`}

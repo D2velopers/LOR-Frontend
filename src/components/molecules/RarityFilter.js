@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
+import * as raritiesIcons from '../../icons/rarities';
+import IconLabel from '../atoms/IconLabel';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,7 +22,7 @@ export default function RarityFilter({ rarities, value, onChange }) {
   return (
     <Wrapper>
       <Title>{f({ id: 'option.rarity' })}</Title>
-      <GridList min={2} max={2} size={'3em'}>
+      <GridList min={2} max={2}>
         {rarities.map(rarity => (
           <div
             key={`card_rarity_${rarity}`}
@@ -29,7 +31,11 @@ export default function RarityFilter({ rarities, value, onChange }) {
               cursor: 'pointer',
               opacity: value.some(item => item === rarity) ? 1 : 0.3,
             }}>
-            {rarity}
+            <IconLabel
+              set={raritiesIcons}
+              label={rarity}
+              localeId={`card.${rarity}`}
+            />
           </div>
         ))}
       </GridList>

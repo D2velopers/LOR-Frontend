@@ -12,7 +12,7 @@ import RarityFilter from '../../components/molecules/RarityFilter';
 const Device = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-row: none;
+  grid-template-row: 1fr;
   gap: ${props => props.theme.sizes.space};
   @media (max-width: ${props => props.theme.sizes.middle}) {
     grid-template-row: repeat(2, 1fr);
@@ -20,24 +20,27 @@ const Device = styled.div`
   }
 `;
 
-const REGIONS = ['DM', 'FR', 'IO', 'NX', 'PZ', 'SI'];
+const REGIONS = [
+  'Demacia',
+  'Freljord',
+  'Ionia',
+  'Noxus',
+  'PiltoverZaun',
+  'ShadowIsles',
+];
 const COSTS = ['0', '1', '2', '3', '4', '5', '6', '7+'];
-const TYPES = ['champion', 'follower', 'spell'];
-const RARITIES = ['champion', 'epic', 'rare', 'common'];
+const TYPES = ['Champion', 'Follower', 'Spell'];
+const RARITIES = ['Champion', 'Epic', 'Rare', 'Common'];
 const CardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function List() {
-  const [champions, setChampions] = useState([]);
-  const [deckType, setDeckType] = useState([]);
   const [regions, setRegions] = useState([]);
   const [costs, setCosts] = useState([]);
-  function handleChampions(champions) {
-    if (champions && champions.length > 2) {
-      return;
-    } else {
-      setChampions(champions);
-    }
-  }
+  const [types, setTypes] = useState([]);
+  const [rarities, setRarities] = useState([]);
+  const [sortByRecent, setSortByRecent] = useState(false);
+  const [viewByList, setViewByList] = useState(false);
+
   function handleRegions(region) {
     const deduplication = regions.filter(el => el !== region);
     if (regions.length !== deduplication.length) {
@@ -56,6 +59,31 @@ export default function List() {
       setCosts(next);
     }
   }
+  function handleTypes(type) {
+    const deduplication = types.filter(el => el !== type);
+    if (types.length !== deduplication.length) {
+      setTypes(deduplication);
+    } else {
+      const next = deduplication.concat(type);
+      setTypes(next);
+    }
+  }
+  function handleRarities(rarity) {
+    const deduplication = rarities.filter(el => el !== rarity);
+    if (rarities.length !== deduplication.length) {
+      setRarities(deduplication);
+    } else {
+      const next = deduplication.concat(rarity);
+      setRarities(next);
+    }
+  }
+  function handleSort() {
+    setSortByRecent(!sortByRecent);
+  }
+  function handleView() {
+    setViewByList(!viewByList);
+  }
+
   function FilterSet() {
     return (
       <>
@@ -66,24 +94,25 @@ export default function List() {
         />
         <CostFilter costs={COSTS} value={costs} onChange={handleCosts} />
         <Device>
-          <CardTypeFilter
-            types={TYPES}
-            value={champions}
-            onChange={handleChampions}
-          />
+          <CardTypeFilter types={TYPES} value={types} onChange={handleTypes} />
           <RarityFilter
             rarities={RARITIES}
-            value={deckType}
-            onChange={setDeckType}
+            value={rarities}
+            onChange={handleRarities}
           />
         </Device>
-        <SortingSwitch />
+        <SortingSwitch
+          sortByRecent={sortByRecent}
+          viewByList={viewByList}
+          handleSort={handleSort}
+          handleView={handleView}
+        />
       </>
     );
   }
 
   return (
-    <Layout FilterSet={FilterSet}>
+    <Layout pageLocale={'page.cards'} FilterSet={FilterSet}>
       {CardList.map((item, index) => (
         <Link key={index} to={`cards/${index}`}>
           <CardFrame index={index} />

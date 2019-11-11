@@ -22,6 +22,7 @@ const Frame = styled.div`
   animation: ${appearing} 0.5s;
   animation-fill-mode: forwards;
   animation-delay: ${props => props.index * 0.1}s;
+  position: relative;
 `;
 
 export default Frame;

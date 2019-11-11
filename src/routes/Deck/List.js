@@ -19,7 +19,14 @@ const Device = styled.div`
   }
 `;
 
-const REGIONS = ['DM', 'FR', 'IO', 'NX', 'PZ', 'SI'];
+const REGIONS = [
+  'Demacia',
+  'Freljord',
+  'Ionia',
+  'Noxus',
+  'PiltoverZaun',
+  'ShadowIsles',
+];
 const colourOptions = [
   { value: 'ocean', label: 'oceanoceanOcean', color: '#00B8D9', isFixed: true },
   {
@@ -113,7 +120,7 @@ export default function List() {
   }
 
   return (
-    <Layout FilterSet={FilterSet}>
+    <Layout pageLocale={'page.decks'} FilterSet={FilterSet}>
       {CardList.map((item, index) => (
         <Link key={index} to={`decks/${index}`}>
           <CardFrame index={index} />

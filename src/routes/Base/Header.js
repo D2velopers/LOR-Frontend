@@ -6,14 +6,15 @@ export default function Header({ history, location }) {
   const isHidden = /auth/.test(location.pathname);
   const isSignIn = !!localStorage.getItem('token');
   const search = useInput('');
-  const handleSearchSubmit = e => {
+
+  function handleSearchSubmit(e) {
     e.preventDefault();
     history.push(`/search?term=${search.value}`);
-  };
-  const handleLogout = () => {
+  }
+  function handleLogout() {
     localStorage.removeItem('token');
     window.location.reload();
-  };
+  }
   return (
     <HeaderComponent
       search={search}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AddOrCancel } from '../../icons/generals';
+import { useIntl } from 'react-intl';
 
 const Centered = styled.div`
   position: relative;
@@ -11,7 +12,7 @@ const Centered = styled.div`
     content: '';
     position: absolute;
     z-index: 10;
-    top: 100%;
+    top: 99%;
     left: calc(50% - 20px);
     background-color: ${props => props.theme.colors.dark.bg};
     width: 40px;
@@ -24,6 +25,9 @@ const Wrapper = styled.div`
   max-width: ${props => props.theme.sizes.contentsMaxWidth};
   color: ${props => props.theme.colors.dark.title};
   padding: 1rem;
+  svg {
+    fill: ${props => props.theme.colors.dark.title};
+  }
 `;
 const Fieldset = styled.fieldset`
   position: relative;
@@ -37,7 +41,7 @@ const Fieldset = styled.fieldset`
     align-items: center;
     justify-content: space-around;
     fill: ${props => props.theme.colors.dark.title};
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding-right: 0.5rem;
     cursor: pointer;
   }
@@ -45,8 +49,8 @@ const Fieldset = styled.fieldset`
     opacity: ${props => (props.activated ? 1 : 0)};
     max-height: ${props => (props.activated ? '1000px' : 0)};
     transform-origin: top;
-    transition: max-height 0.8s cubic-bezier(0, 1, 0, 1),
-      opacity 0.5s cubic-bezier(0, 1, 0, 1);
+    transition: max-height 0.6s cubic-bezier(0, 1, 0, 1),
+      opacity 0.3s cubic-bezier(0, 1, 0, 1);
     max-width: ${props => props.theme.sizes.middle};
     margin: 0 auto;
     > *:not(:last-child) {
@@ -54,20 +58,26 @@ const Fieldset = styled.fieldset`
     }
   }
 `;
+const Title = styled.div`
+  color: ${props => props.theme.colors.dark.emph};
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+`;
 
-export default function Filter({ children }) {
+export default function Filter({ pageLocale, children }) {
   const [activated, setActivated] = useState(true);
-
+  const { formatMessage: f } = useIntl();
   return (
     <Centered>
       <Wrapper>
+        {pageLocale && <Title>{f({ id: pageLocale })}</Title>}
         <Fieldset activated={activated}>
           <legend
             onClick={() => {
               setActivated(!activated);
             }}>
             <AddOrCancel cancel={activated} />
-            필터 추가하기
+            {f({ id: 'app.filters' })}
           </legend>
           <div>{children}</div>
         </Fieldset>

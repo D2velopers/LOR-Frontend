@@ -20,7 +20,10 @@ export default createGlobalStyle`
   a {
     text-decoration: none;
   }
-  input:focus{
+  input:focus {
+    outline: none;
+  }
+  button:focus {
     outline: none;
   }
 `;

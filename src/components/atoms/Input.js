@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
+import { useIntl } from 'react-intl';
 
 const Label = styled.label`
   display: flex;
@@ -9,7 +10,7 @@ const Label = styled.label`
 `;
 const GeneralStyle = css`
   font-size: ${props => (props.isValue ? 0.8 : 0.9)}rem;
-  height: 2.25rem;
+  height: ${props => props.theme.sizes.inputHeight};
   line-height: 0.4rem;
 `;
 const Placeholder = styled.span`
@@ -48,13 +49,16 @@ const Flexible = styled(Input)`
   }
 `;
 
-export function DefaultInput({ placeholder, ...rest }) {
+export function DefaultInput({ placeholderLocaleId, ...rest }) {
   const inputEl = useRef(null);
   const isValue = inputEl.current && !!inputEl.current.value;
+  const { formatMessage: f } = useIntl();
 
   return (
     <Label>
-      <Placeholder isValue={isValue}>{placeholder}</Placeholder>
+      <Placeholder isValue={isValue}>
+        {f({ id: placeholderLocaleId })}
+      </Placeholder>
       <Input isValue={isValue} ref={inputEl} {...rest} />
     </Label>
   );

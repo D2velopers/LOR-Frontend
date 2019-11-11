@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
+import * as typeIcons from '../../icons/types';
+import IconLabel from '../atoms/IconLabel';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,7 +22,7 @@ export default function CardTypeFilter({ types, value, onChange }) {
   return (
     <Wrapper>
       <Title>{f({ id: 'option.type' })}</Title>
-      <GridList min={2} max={2} size={'3em'}>
+      <GridList min={3} max={3}>
         {types.map(type => (
           <div
             key={`card_type_${type}`}
@@ -29,37 +31,10 @@ export default function CardTypeFilter({ types, value, onChange }) {
               cursor: 'pointer',
               opacity: value.some(item => item === type) ? 1 : 0.3,
             }}>
-            {type}
+            <IconLabel set={typeIcons} label={type} localeId={`card.${type}`} />
           </div>
         ))}
       </GridList>
     </Wrapper>
   );
 }
-
-// import React from 'react';
-// import styled from 'styled-components';
-// import { useIntl } from 'react-intl';
-// import Selector from '../atoms/Selector';
-
-// const Wrapper = styled.div`
-//   width: 100%;
-//   margin: 0 auto;
-// `;
-// const Title = styled.p`
-//   text-align: center;
-//   font-size: 1.1rem;
-//   color: ${props => props.theme.colors.dark.title};
-//   margin: 0.5rem;
-// `;
-
-// export default function ChampionFilter({ options, isMulti, value, onChange }) {
-//   const { formatMessage: f } = useIntl();
-
-//   return (
-//     <Wrapper>
-//       <Title>{f({ id: 'option.type' })}</Title>
-//       <Selector options={options} value={value} onChange={onChange} />
-//     </Wrapper>
-//   );
-// }
