@@ -1,38 +1,50 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useChange } from '../../lib';
+import data from '../../data/card/data/set1-ko_kr.json';
 import Layout from '../../layouts/ListLayout';
 import CardFrame from '../../components/atoms/CardFrame';
+import { ResponsiveGridList } from '../../components/atoms/FilterList';
 import SortingSwitch from '../../components/molecules/SortingSwitch';
 import RegionFilter from '../../components/molecules/RegionFilter';
 import CostFilter from '../../components/molecules/CostFilter';
 import CardTypeFilter from '../../components/molecules/CardTypeFilter';
 import RarityFilter from '../../components/molecules/RarityFilter';
 import DeckBuilder from '../../components/organisms/DeckBuilder';
-
-const Device = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-row: none;
-  gap: ${props => props.theme.sizes.space};
-  @media (max-width: ${props => props.theme.sizes.middle}) {
-    grid-template-row: repeat(2, 1fr);
-    grid-template-columns: 1fr;
-  }
-`;
-
-const REGIONS = ['DM', 'FR', 'IO', 'NX', 'PZ', 'SI'];
-const COSTS = ['0', '1', '2', '3', '4', '5', '6', '7+'];
-const TYPES = ['champion', 'follower', 'spell'];
-const RARITIES = ['champion', 'epic', 'rare', 'common'];
-const CardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+import Card from '../../components/molecules/Card';
 
 export default function List() {
+  const [deck, setDeck] = useState([]);
+  const [numberOfChamp, setNumberOfChamp] = useState(0);
+  const [numberOfCard, setNumberOfCard] = useState(0);
   const [builderActivated, setBuilderActivated] = useState(false);
 
   function toggleBuilder() {
     setBuilderActivated(!builderActivated);
   }
+  function addCard(card) {
+    // 40장 이내
+    // 동일 카드는 3장까지
+    // 챔피언은 최대 6종류만
+    // 진영 최대 2종류
+    // 메타데이터 관련 필터는 onClick 해제
+
+    const targetCode = card.cardCode;
+    const nextDeck = Array.from(deck);
+    console.log(card);
+    if (numberOfCard < 40) {
+      const existedIdx = deck.findIndex(item => item[0] === targetCode);
+      if (existedIdx < 0) {
+        nextDeck.push({ '0': targetCode, '1': 1 });
+        setDeck(nextDeck);
+        setNumberOfCard(numberOfCard + 1);
+      } else if (deck[existedIdx][1] < 3) {
+        nextDeck[existedIdx][1]++;
+        setDeck(nextDeck);
+        setNumberOfCard(numberOfCard + 1);
+      }
+    }
+  }
+
   return (
     <>
       <Layout
@@ -40,10 +52,8 @@ export default function List() {
         FilterSet={FilterSet}
         optFunc={toggleBuilder}
         optActivated={builderActivated}>
-        {CardList.map((item, index) => (
-          <Link key={index} to={`cards/${index}`}>
-            <CardFrame index={index} />
-          </Link>
+        {data.map((item, index) => (
+          <Card key={item.cardCode} value={item} onClick={addCard} />
         ))}
       </Layout>
       <DeckBuilder activated={builderActivated} />
@@ -52,56 +62,19 @@ export default function List() {
 }
 
 function FilterSet() {
-  const [champions, setChampions] = useState([]);
-  const [deckType, setDeckType] = useState([]);
-  const [regions, setRegions] = useState([]);
-  const [costs, setCosts] = useState([]);
+  const region = useChange([], 2);
+  const cost = useChange([]);
+  const type = useChange([]);
+  const rarity = useChange([]);
 
-  function handleChampions(champions) {
-    if (champions && champions.length > 2) {
-      return;
-    } else {
-      setChampions(champions);
-    }
-  }
-  function handleRegions(region) {
-    const deduplication = regions.filter(el => el !== region);
-    if (regions.length !== deduplication.length) {
-      setRegions(deduplication);
-    } else {
-      const next = deduplication.concat(region);
-      setRegions(next);
-    }
-  }
-  function handleCosts(cost) {
-    const deduplication = costs.filter(el => el !== cost);
-    if (costs.length !== deduplication.length) {
-      setCosts(deduplication);
-    } else {
-      const next = deduplication.concat(cost);
-      setCosts(next);
-    }
-  }
   return (
     <>
-      <RegionFilter
-        regions={REGIONS}
-        value={regions}
-        onChange={handleRegions}
-      />
-      <CostFilter costs={COSTS} value={costs} onChange={handleCosts} />
-      <Device>
-        <CardTypeFilter
-          types={TYPES}
-          value={champions}
-          onChange={handleChampions}
-        />
-        <RarityFilter
-          rarities={RARITIES}
-          value={deckType}
-          onChange={setDeckType}
-        />
-      </Device>
+      <RegionFilter {...region} />
+      <CostFilter {...cost} />
+      <ResponsiveGridList>
+        <CardTypeFilter {...rarity} />
+        <RarityFilter {...type} />
+      </ResponsiveGridList>
       <SortingSwitch />
     </>
   );

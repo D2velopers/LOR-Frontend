@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
 import RegionIcon from '../atoms/RegionIcon';
+import { REGIONS } from '../../constants/filter';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,14 +16,14 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function RegionFilter({ regions, value, onChange }) {
+export default function RegionFilter({ value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <Wrapper>
       <Title>{f({ id: 'option.region' })}</Title>
       <GridList min={3} max={6}>
-        {regions.map(region => (
+        {REGIONS.map(region => (
           <RegionIcon
             region={region}
             size={3}

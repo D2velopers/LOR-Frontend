@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
 import * as typeIcons from '../../icons/types';
 import IconLabel from '../atoms/IconLabel';
+import { TYPES } from '../../constants/filter';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,14 +17,14 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function CardTypeFilter({ types, value, onChange }) {
+export default function CardTypeFilter({ value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <Wrapper>
       <Title>{f({ id: 'option.type' })}</Title>
       <GridList min={3} max={3}>
-        {types.map(type => (
+        {TYPES.map(type => (
           <div
             key={`card_type_${type}`}
             onClick={() => onChange(type)}

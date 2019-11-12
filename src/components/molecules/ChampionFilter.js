@@ -18,7 +18,7 @@ export default function ChampionFilter({ options, isMulti, value, onChange }) {
 
   return (
     <Wrapper>
-      <Title>{f({ id: 'option.champion' })}</Title>
+      <Title>{f({ id: 'card.Champion' })}</Title>
       <Selector
         options={options}
         isMulti={isMulti}

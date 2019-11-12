@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
 import Circle from '../atoms/Circle';
+import { COSTS } from '../../constants/filter';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,14 +16,14 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function CostFilter({ costs, value, onChange }) {
+export default function CostFilter({ value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <Wrapper>
       <Title>{f({ id: 'option.cost' })}</Title>
       <GridList min={4} max={8}>
-        {costs.map(cost => (
+        {COSTS.map(cost => (
           <Circle
             key={`mana_cost_${cost}`}
             onClick={() => onChange(cost)}

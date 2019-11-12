@@ -33,6 +33,16 @@ const Flex = styled(List)`
     margin-right: ${props => props.theme.sizes.space};
   }
 `;
+const ResponsiveGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${props => props.rows}, 1fr);
+  grid-template-row: none;
+  gap: ${props => props.theme.sizes.space};
+  @media (max-width: ${props => props.theme.sizes.middle}) {
+    grid-template-row: repeat(${props => props.rows}, 1fr);
+    grid-template-columns: 1fr;
+  }
+`;
 
 export function GridList({ children, min, max }) {
   return (
@@ -43,4 +53,8 @@ export function GridList({ children, min, max }) {
 }
 export function FlexList({ children }) {
   return <Flex>{children}</Flex>;
+}
+
+export function ResponsiveGridList({ children }) {
+  return <ResponsiveGrid rows={children.length}>{children}</ResponsiveGrid>;
 }

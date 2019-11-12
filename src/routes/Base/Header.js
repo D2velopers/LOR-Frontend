@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useInput } from '../../lib';
 import HeaderComponent from '../../components/organisms/Header';
 
@@ -15,6 +15,13 @@ export default function Header({ history, location }) {
     localStorage.removeItem('token');
     window.location.reload();
   }
+
+  useEffect(() => {
+    window.scrollTo({
+      behavior: 'smooth',
+      top: 0,
+    });
+  }, [location.pathname]);
   return (
     <HeaderComponent
       search={search}

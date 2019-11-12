@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useChange } from '../../lib';
 import Layout from '../../layouts/ListLayout';
 import CardFrame from '../../components/atoms/CardFrame';
+import { ResponsiveGridList } from '../../components/atoms/FilterList';
 import SortingSwitch from '../../components/molecules/SortingSwitch';
 import RegionFilter from '../../components/molecules/RegionFilter';
 import ChampionFilter from '../../components/molecules/ChampionFilter';
 import DeckTypeFilter from '../../components/molecules/DeckTypeFilter';
 
-const Device = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-row: none;
-  gap: ${props => props.theme.sizes.space};
-  @media (max-width: ${props => props.theme.sizes.middle}) {
-    grid-template-row: repeat(2, 1fr);
-    grid-template-columns: 1fr;
-  }
-`;
-
-const REGIONS = [
-  'Demacia',
-  'Freljord',
-  'Ionia',
-  'Noxus',
-  'PiltoverZaun',
-  'ShadowIsles',
-];
 const colourOptions = [
   { value: 'ocean', label: 'oceanoceanOcean', color: '#00B8D9', isFixed: true },
   {
@@ -71,9 +53,10 @@ const deckTypeOptions = [
 const CardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default function List() {
+  const region = useChange([], 2);
   const [champions, setChampions] = useState([]);
   const [deckType, setDeckType] = useState([]);
-  const [regions, setRegions] = useState([]);
+
   function handleChampions(champions) {
     if (champions && champions.length > 2) {
       return;
@@ -81,27 +64,11 @@ export default function List() {
       setChampions(champions);
     }
   }
-  function handleRegions(region) {
-    const deduplication = regions.filter(el => el !== region);
-    console.log(region, deduplication, region);
-    if (regions.length !== deduplication.length) {
-      setRegions(deduplication);
-    } else {
-      const next = deduplication.concat(region);
-      if (next.length < 3) {
-        setRegions(next);
-      }
-    }
-  }
   function FilterSet() {
     return (
       <>
-        <RegionFilter
-          regions={REGIONS}
-          value={regions}
-          onChange={handleRegions}
-        />
-        <Device>
+        <RegionFilter {...region} />
+        <ResponsiveGridList>
           <ChampionFilter
             options={groupedOptions}
             isMulti
@@ -113,7 +80,7 @@ export default function List() {
             value={deckType}
             onChange={setDeckType}
           />
-        </Device>
+        </ResponsiveGridList>
         <SortingSwitch />
       </>
     );

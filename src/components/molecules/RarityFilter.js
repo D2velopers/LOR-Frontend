@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { GridList } from '../atoms/FilterList';
 import * as raritiesIcons from '../../icons/rarities';
 import IconLabel from '../atoms/IconLabel';
+import { RARITIES } from '../../constants/filter';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,14 +17,14 @@ const Title = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-export default function RarityFilter({ rarities, value, onChange }) {
+export default function RarityFilter({ value, onChange }) {
   const { formatMessage: f } = useIntl();
 
   return (
     <Wrapper>
       <Title>{f({ id: 'option.rarity' })}</Title>
       <GridList min={2} max={2}>
-        {rarities.map(rarity => (
+        {RARITIES.map(rarity => (
           <div
             key={`card_rarity_${rarity}`}
             onClick={() => onChange(rarity)}
